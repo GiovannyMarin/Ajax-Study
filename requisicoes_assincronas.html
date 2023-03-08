@@ -42,7 +42,7 @@
 							let conteudo = document.getElementById("conteudo");
 							conteudo.innerHTML = ajax.responseText;
 							console.log("o status da requisicao eh " + ajax.status);
-						}, 1500);
+						}, 1000);
 					} else if (ajax.readyState == 4 && ajax.status == 404) {
 						let conteudo = document.getElementById("conteudo");
 						conteudo.innerHTML = "Error " + ajax.status;

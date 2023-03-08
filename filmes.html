@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+		/>
+		<script>
+			function getFilmes() {
+				let xmlHttp = new XMLHttpRequest();
+				xmlHttp.open("GET", "http://localhost/ajax/filmes.xml");
+
+				xmlHttp.onreadystatechange = () => {
+					if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+						let XMLFilmes = xmlHttp.responseText;
+						let conteudo = document.getElementById("conteudo");
+						conteudo.innerHTML = XMLFilmes;
+					}
+				};
+
+				xmlHttp.send();
+			}
+		</script>
+		<title>Filmes XML</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-light bg-light mb-4">
+			<div class="container">
+				<div class="navbar-brand mb-0 h1">
+					<h3>Filmes</h3>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container">
+			<div class="row">
+				<div class="col" id="conteudo"></div>
+				<div class="col">
+					<button type="button" class="btn btn-success" onclick="getFilmes()">
+						Pegar Filmes
+					</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
