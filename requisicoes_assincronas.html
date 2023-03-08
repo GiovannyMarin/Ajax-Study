@@ -22,7 +22,9 @@
 					imgLoading.src = "loading.gif";
 					imgLoading.className = "rounded mx-auto d-block";
 
-					document.getElementById("conteudo").appendChild(imgLoading);
+					let conteudo = document.getElementById("conteudo");
+					conteudo.innerHTML = "";
+					conteudo.appendChild(imgLoading);
 				}
 				let ajax = new XMLHttpRequest();
 
@@ -35,12 +37,12 @@
 				ajax.onreadystatechange = () => {
 					console.log(ajax.readyState);
 					if (ajax.readyState == 4 && ajax.status == 200) {
-						let conteudo = document.getElementById("conteudo");
-						conteudo.innerHTML = "Requisicao Sucesso";
-						console.log("o status da requisicao eh " + ajax.status);
 						setTimeout(() => {
 							document.getElementById("loading").remove();
-						}, 2500);
+							let conteudo = document.getElementById("conteudo");
+							conteudo.innerHTML = ajax.responseText;
+							console.log("o status da requisicao eh " + ajax.status);
+						}, 1500);
 					} else if (ajax.readyState == 4 && ajax.status == 404) {
 						let conteudo = document.getElementById("conteudo");
 						conteudo.innerHTML = "Error " + ajax.status;
@@ -79,7 +81,7 @@
 					<a
 						href="#"
 						class="btn btn-primary"
-						onclick="requisitarPagina('pagina_2_conteusdo.html')"
+						onclick="requisitarPagina('pagina_2_conteudo.html')"
 						>Página 2</a
 					>
 					<a
